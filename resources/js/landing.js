@@ -1,6 +1,6 @@
 
 function main(){
-    const modal = document.querySelector('.modal')
+    const modal  = document.querySelector('.modal')
     closeModal(modal)
     openModal(modal)
 
