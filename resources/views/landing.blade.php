@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Landing</title>
-    {{-- <link rel="stylesheet" href="{{ asset('css/landing.css') }}"> --}}
     @vite(['resources/css/landing.css', 'resources/js/landing.js'])
     <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
 
@@ -14,8 +13,8 @@
 </head>
 
 <body>
-    <div id="modal--create" class="modal hidden ">
-        <form action="{{ route('products.store') }}" method="POST">
+    <div class="modal hidden modal--create ">
+        <form action=" {{ route('products.store') }}" method="POST">
             @csrf
             <div class="modal__title">
                 Create Product
@@ -38,15 +37,18 @@
                     <input type="number" name="price" id="price" required>
                     <label for="name">Price</label>
                 </div>
+
             </div>
 
             <button>Crear Producto</button>
         </form>
     </div>
 
-    <div id="modal--edit" class="modal hidden ">
+    <div class="modal hidden modal--edit ">
         <form action="{{ route('products.update') }}" method="POST">
+            @method('PATCH')
             @csrf
+
             <div class="modal__title">
                 Edit Product
                 <div class="modal__closeButton --edit">
@@ -61,13 +63,16 @@
                     <label for="name">Name</label>
                 </div>
                 <div class="modal__input">
-                    <input type="text" name="description" id="description" required>
+                    <input type="text" name="description" id="description" value="paq" required>
                     <label for="name">Description</label>
                 </div>
                 <div class="modal__input">
                     <input type="number" name="price" id="price" required>
                     <label for="name">Price</label>
                 </div>
+
+                <input type="hidden" name="id" value="" required>
+
             </div>
 
             <button>Editar Producto</button>
@@ -84,12 +89,18 @@
 
     <header class="header">
         <div class="header__logo">
-            CRUD
+            @auth
+                Hola {{ Auth::user()->name }}!!
+            @endauth
         </div>
         <nav class="header__navigator">
             <ul>
-                <li><a href="">Login</a></li>
-                <li><a href="">Products</a></li>
+                <li>
+                    <form action="{{route('logout.logout')}}" method="POST">
+                        @csrf
+                        <button class="logout__button">Logout</button>
+                    </form>
+                </li>
             </ul>
         </nav>
     </header>
@@ -134,7 +145,11 @@
                         </form>
                         {{-- boton editar --}}
 
-                        <button class="product__item--button products__button--edit" data-id="{{$product->id}}">Editar</button>
+                        <button class="product__item--button products__button--edit" {{-- data-id="{{$product->id}}"  --}}
+                            data-name="{{ $product->name }}" data-description="{{ $product->description }}"
+                            data-price="{{ $product->price }}" data-id="{{ $product->id }}">
+                            Editar
+                        </button>
 
 
                     </li>

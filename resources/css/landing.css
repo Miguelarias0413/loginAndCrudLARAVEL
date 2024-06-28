@@ -271,6 +271,19 @@
     }
 }
 
+.logout__button{
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: #ffffff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover{
+        background-color: #ff0000;
+    }
+}
+
 /*CLASES DE UTILIDAD*/
 .hidden{
     display: none;

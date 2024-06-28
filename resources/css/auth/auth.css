@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.form--login {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    
+    .form__title{
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #000000;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .form__input{
+
+        width: 100%;
+        height: 50px;
+        position: relative;
+        margin: 10px 0;
+
+
+        label {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background-color: white;
+            border-radius: 2px;
+            pointer-events: none;
+            height: auto;
+            transition: top 0.03s ease;
+        }
+
+        input {
+            width: 100%;
+            height: 100%;
+            padding: 0 20px;
+            border-radius: 5px;
+            color: #000000;
+            font-size: 0.9rem;
+            font-weight: 600;
+            outline: none;
+            border: none;
+            border: 2px solid #bcbcbc;
+
+
+            &:focus {
+                border: 2px solid #ff9100;
+
+            }
+
+            &:focus+label {
+                transform: translateY(0);
+                top: -10px;
+            }
+
+            &:not(:placeholder-shown) + label {
+                transform: translateY(0);
+                top: -10px;
+            }
+
+            &::placeholder {
+                color: #ff0000;
+            }
+
+
+        }
+        
+        
+    }
+
+    .form__button{
+        padding: 10px 30px;
+        background-color: #ff9100;
+        color: #fff;
+        font-weight: 600;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover{
+            background-color: #ff6f00;
+        }
+        
+    }
+    .form__info{
+        margin-top: 20px;
+        text-align: center;
+        a{
+            color: #ff9100;
+            font-weight: 600;
+        }
+    }
+
+}
+.alert{
+    border: 2px solid #ff0000 !important;
+} 
