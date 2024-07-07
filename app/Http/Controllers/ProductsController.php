@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
   
     function index()
     {
-        
-        $products =Product::all();
-        return view('landing', ['products' => $products]);
+        $userProducts = Auth::user()->products;
+        return view('landing', ['userProducts' => $userProducts]);
     }
 
     function store(Request $request){
@@ -29,7 +29,13 @@ class ProductsController extends Controller
 
         ]);
 
-        Product::create($validatedProduct);
+        $newProduct = new Product();
+        $newProduct->name = $request->input('name');
+        $newProduct->description = $request->input('description');
+        $newProduct->price = $request->input('price');
+        $newProduct->user_id = Auth::id();
+        $newProduct->save();
+        
 
         return redirect()->route('products.index');
     }

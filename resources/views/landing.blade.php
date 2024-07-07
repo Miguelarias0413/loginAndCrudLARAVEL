@@ -125,7 +125,13 @@
             </ul>
 
             {{-- lista items --}}
-            @foreach ($products as $product)
+            @if ($userProducts->isEmpty())
+                
+                <h1>No hay productos</h1>
+                
+            @else
+
+            @foreach ($userProducts as $product)
                 <ul class="product__item">
                     <li class="product__item--attributte product__item--index">{{ $loop->iteration }}</li>
                     <li class="product__item--attributte ">{{ $product->id }}</li>
@@ -155,6 +161,7 @@
                     </li>
                 </ul>
             @endforeach
+            @endif
 
 
 
